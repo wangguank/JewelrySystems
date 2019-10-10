@@ -5,6 +5,7 @@ namespace Jewelry
 {
     public class DataManager : MonoBehaviour
     {
+        List<UserData> allUserData;
 
 
     }

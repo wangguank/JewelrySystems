@@ -11,6 +11,18 @@ namespace Jewelry
         Goods,//商品
 
     }
+
+    public enum GenderEnum
+    {
+        Male,
+        Female,
+    }
+    public enum UserType
+    {
+        None,
+        Boss,
+        Employee
+    }
     public class Common
     {
         public static string FilePath = "UserData";//保存路径
