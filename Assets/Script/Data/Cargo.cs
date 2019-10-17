@@ -27,7 +27,7 @@ namespace Jewelry
         public string _time;//录入时间
 
         public bool isSell = false;
-        float _sellPrice;//售卖价格
+        float _sellPrice=0;//售卖价格
         public float sellPrice
         {
             get
@@ -35,7 +35,7 @@ namespace Jewelry
                 return _sellPrice;
             }
         }
-        float _sellDayGoldPrice;//售卖当天金价
+        float _sellDayGoldPrice=0;//售卖当天金价
         public float sellDayGoldPrice
         {
             get
@@ -43,11 +43,11 @@ namespace Jewelry
                 return _sellDayGoldPrice;
             }
         }
-        public string sellTime;
-        public string _mainSeller;
-        public string _otherSeller1;
-        public string _otherSeller2;
-        public string _otherSeller3;
+        public string sellTime = "";
+        public string _mainSeller = "";
+        public string _otherSeller1 = "";
+        public string _otherSeller2 = "";
+        public string _otherSeller3 = "";
 
 
         public Cargo()
@@ -66,6 +66,13 @@ namespace Jewelry
             _otherSeller1 = otherSeller1;
             _otherSeller2 = otherSeller2;
             _otherSeller3 = otherSeller3;
+        }
+
+        //开收据
+        public void Receipt()
+        {
+            if (!isSell) return;
+
         }
 
         public Cargo(JObject json, int vercode)
@@ -91,13 +98,42 @@ namespace Jewelry
             _time= JsonHelper.GetString(json, "_time");
 
             isSell= JsonHelper.GetBoolean(json, "isSell");
+            _sellPrice = JsonHelper.GetFloat(json, "_sellPrice");
+            _sellDayGoldPrice = JsonHelper.GetFloat(json, "_sellDayGoldPrice");
+            sellTime= JsonHelper.GetString(json, "sellTime");
+            _mainSeller = JsonHelper.GetString(json, "_mainSeller");
+            _otherSeller1 = JsonHelper.GetString(json, "_otherSeller1");
+            _otherSeller2 = JsonHelper.GetString(json, "_otherSeller2");
+            _otherSeller3 = JsonHelper.GetString(json, "_otherSeller3");
 
         }
-
         public override JObject Serialize(int versionCode)
         {
             JObject json = new JObject();
-          
+            JsonHelper.SetString(json, "kind", kind);
+            JsonHelper.SetFloat(json, "weight", weight);
+            JsonHelper.SetFloat(json, "mainStoneWeight", mainStoneWeight);
+            JsonHelper.SetInteger(json, "mainStoneNumber", mainStoneNumber);
+
+            JsonHelper.SetFloat(json, "deputyStoneWeight1", deputyStoneWeight1);
+            JsonHelper.SetInteger(json, "deputyStoneNumber1", deputyStoneNumber1);
+            JsonHelper.SetFloat(json, "deputyStoneWeight2", deputyStoneWeight2);
+            JsonHelper.SetInteger(json, "deputyStoneNumber2", deputyStoneNumber2);
+            JsonHelper.SetFloat(json, "deputyStoneWeight3", deputyStoneWeight3);
+            JsonHelper.SetInteger(json, "deputyStoneNumber3", deputyStoneNumber3);
+
+            JsonHelper.SetFloat(json, "price", price);
+            JsonHelper.SetString(json, "_time", _time);
+
+            JsonHelper.SetBoolean(json, "isSell", isSell);
+            JsonHelper.SetFloat(json, "_sellPrice", _sellPrice);
+            JsonHelper.SetFloat(json, "_sellDayGoldPrice", _sellDayGoldPrice);
+
+            JsonHelper.SetString(json, "sellTime", sellTime);
+            JsonHelper.SetString(json, "_mainSeller", _mainSeller);
+            JsonHelper.SetString(json, "_otherSeller1", _otherSeller1);
+            JsonHelper.SetString(json, "_otherSeller2", _otherSeller2);
+            JsonHelper.SetString(json, "_otherSeller3", _otherSeller3);
 
             return json;
         }
