@@ -11,16 +11,16 @@ namespace Jewelry
         public string kind;//品类，因为不知道有多少种，所以这里无法写成枚举
         public float weight;
 
-        public float mainStoneWeight;
+        public float mainStoneWeight;//主石
         public int mainStoneNumber;
 
-        public float deputyStoneWeight1;
+        public float deputyStoneWeight1;//副石
         public int deputyStoneNumber1;
 
-        public float deputyStoneWeight2;
+        public float deputyStoneWeight2;//副石
         public int deputyStoneNumber2;
 
-        public float deputyStoneWeight3;
+        public float deputyStoneWeight3;//副石
         public int deputyStoneNumber3;
 
         public float price;//标签价格

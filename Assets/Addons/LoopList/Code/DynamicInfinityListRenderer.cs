@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System;
 /// <summary>
 /// 动态无限列表
-/// @panhaijie
+/// 
 /// 2016年3月22日 10:27:51
 /// </summary>
 public class DynamicInfinityListRenderer : MonoBehaviour
@@ -244,11 +244,14 @@ public class DynamicInfinityListRenderer : MonoBehaviour
 
     protected void UpdateRender()
     {
+        //先算mask，保证遮罩
         mRectMask.y = -mMaskSize.y - mRectTransformContainer.anchoredPosition.y;       
         Dictionary<int, DynamicRect> inOverlaps = new Dictionary<int, DynamicRect>();
+
+        //这里foreach是否开销很大，改成别的方式
         foreach (DynamicRect dR in mDict_dRect.Values)
         {
-            if (dR.Overlaps(mRectMask))
+            if (dR.Overlaps(mRectMask))//计算是否在mask中
             {
                 inOverlaps.Add(dR.Index, dR);
             }
@@ -257,14 +260,16 @@ public class DynamicInfinityListRenderer : MonoBehaviour
         for (int i = 0; i < len; ++i)
         {
             DynamicInfinityItem item = mList_items[i];
-            if (item.DRect != null && !inOverlaps.ContainsKey(item.DRect.Index))
+            if (item.DRect != null && !inOverlaps.ContainsKey(item.DRect.Index))//把那些不需要渲染的隐藏
                 item.DRect = null;
         }
         foreach (DynamicRect dR in inOverlaps.Values)
         {
-            if (GetDynmicItem(dR) == null)
+            if (GetDynmicItem(dR) == null)//如果没有获取到就重新生成一个
             {
-                DynamicInfinityItem item = GetNullDynmicItem();
+                Debug.Log("mList_items相当于一个对象池，通过每个子元素中的DRect==null来判断是否使用");
+
+                DynamicInfinityItem item = GetNullDynmicItem();//从对象池里面获取一个
                 item.DRect = dR;
                 _UpdateChildTransformPos(item.gameObject, dR.Index);
 

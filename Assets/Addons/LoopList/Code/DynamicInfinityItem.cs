@@ -50,7 +50,7 @@ public class DynamicRect
 
 /// <summary>
 /// 动态无限渲染器
-/// @panhaijie
+///
 /// </summary>
 public class DynamicInfinityItem : MonoBehaviour
 {
