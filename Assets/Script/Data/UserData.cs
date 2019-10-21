@@ -11,8 +11,8 @@ namespace Jewelry
     //单个会员信息
     public class UserData : Json_BasicInfo
     {
-        UserInfo userInfo;//会员基本信息
-        List<UserBuyInfo> userBuyInfos;//购买信息
+        public UserInfo userInfo;//会员基本信息
+        public List<UserBuyInfo> userBuyInfos;//购买信息
 
         public UserData()//第一次开软件的时候
         {

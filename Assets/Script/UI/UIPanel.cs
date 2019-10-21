@@ -20,6 +20,22 @@ namespace Jewelry
         {
 
         }
+
+        public virtual void DisablePanel()
+        {
+            Debug.Log("DisablePanel：" + uiEnum);
+            if(gameObject.activeSelf)
+            gameObject.SetActive(false);
+        }
+
+        public virtual void ShowPanel()
+        {
+            Debug.Log("ShowPanel：" + uiEnum);
+
+            if (!gameObject.activeSelf)
+                gameObject.SetActive(true);
+
+        }
     }
 }
    

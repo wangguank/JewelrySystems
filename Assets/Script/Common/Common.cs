@@ -8,8 +8,12 @@ namespace Jewelry
     {
         None,
         User,//用户
-        Goods,//商品
-
+        Sell,//商品
+        Clerk,//店员
+        Stock,//库存
+        Warning,//警告
+        Warning_Button,//带按钮的警告
+        Success
     }
 
     public enum GenderEnum
