@@ -11,6 +11,7 @@ namespace Jewelry
         void Start()
         {
             Regist();
+            Init();
             DisablePanel();
         }
 

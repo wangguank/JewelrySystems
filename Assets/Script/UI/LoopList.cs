@@ -8,12 +8,19 @@ namespace Jewelry
     {
 
         public DynamicInfinityListRenderer m_Dl;
+        UserManager userManager;
 
         // Use this for initialization
         void Start()
         {
-            m_Dl.InitRendererList(OnSelectHandler, null);//初始化的时候计算了需要显示的格子数，并且保存        
+            if(m_Dl)
+             m_Dl.InitRendererList(OnSelectHandler, null);//初始化的时候计算了需要显示的格子数，并且保存  
+
+            userManager = transform.GetComponent<UserManager>();
+            
         }
+
+
 
         public void SetDatas(List<UserData> userDatas)
         {

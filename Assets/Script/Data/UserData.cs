@@ -12,12 +12,12 @@ namespace Jewelry
     public class UserData : Json_BasicInfo
     {
         public UserInfo userInfo;//会员基本信息
-        public List<UserBuyInfo> userBuyInfos;//购买信息
+        public List<BuyCargo> userBuyInfos;//购买信息
 
         public UserData()//第一次开软件的时候
         {
             userInfo = new UserInfo();
-            userBuyInfos = new List<UserBuyInfo>();
+            userBuyInfos = new List<BuyCargo>();
         }
 
         public UserData(JObject json, int vercode)
@@ -29,7 +29,7 @@ namespace Jewelry
         {
             if (json == null) return;
             List<object> _List = JsonHelper.Get<List<object>>(json, "userBuyInfos");
-            userBuyInfos = _List.Select(o => new UserBuyInfo(o as JObject, versionCode)).ToList();
+            userBuyInfos = _List.Select(o => new BuyCargo(o as JObject, versionCode)).ToList();
 
             JObject _json= JsonHelper.Get<JObject>(json, "userInfo");
             userInfo = new UserInfo(_json, versionCode);

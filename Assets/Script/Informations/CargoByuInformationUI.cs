@@ -4,15 +4,12 @@ using UnityEngine;
 
 namespace Jewelry
 {
-    public class SellManager : UIPanel
+    public class CargoByuInformationUI : MonoBehaviour 
     {
 
         // Use this for initialization
         void Start()
         {
-            Regist();
-            Init();
-            DisablePanel();
 
         }
 

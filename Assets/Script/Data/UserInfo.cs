@@ -1,5 +1,6 @@
 ﻿using Client.Utils;
 using JObject = System.Collections.Generic.Dictionary<string, object>;
+using System;
 namespace Jewelry
 {
     //单个会员信息
@@ -10,8 +11,12 @@ namespace Jewelry
         public string birthday;
         public string phoneNumber;
         public string address;
+        public string joinTime;
 
-        public UserInfo() { }
+        public UserInfo() 
+        {
+            joinTime = DateTime.Now.ToString ("yyyy - MM - dd");
+        }
 
         public UserInfo(JObject json, int vercode)
         {
@@ -26,6 +31,7 @@ namespace Jewelry
             phoneNumber = JsonHelper.GetString(json, "phoneNumber");
             address = JsonHelper.GetString(json, "address");
             gender = (GenderEnum)JsonHelper.GetInteger(json, "gender");
+            joinTime= JsonHelper.GetString(json, "joinTime");
         }
 
         public override JObject Serialize(int versionCode)
@@ -36,6 +42,7 @@ namespace Jewelry
             JsonHelper.SetString(json, "phoneNumber", phoneNumber);
             JsonHelper.SetString(json, "address", address);
             JsonHelper.SetInteger(json, "gender", (int)gender);
+            JsonHelper.SetString(json, "joinTime", joinTime);
             return json;
         }
     }
